@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using SaharaLib;
 
 namespace SaharaServer
 {
@@ -17,9 +18,9 @@ namespace SaharaServer
             Connections.Add(newConnection);
         }
 
-        public UserData FindUser(string username)
+        public UserData FindUser(string email)
         {
-            var userData = Connections.Find(user => user.GetUserData.AccountData.UserName, Equals(username));
+            var userData = Connections.Find(user => user.GetUserData.AccountData.Tag.Equals(user));
             return userData.GetUserData;
         }
     }

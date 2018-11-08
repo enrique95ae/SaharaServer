@@ -1,7 +1,8 @@
-﻿using System;
-using System.Net;
+﻿using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using SaharaLib;
+using System;
 
 namespace SaharaServer
 {
@@ -14,24 +15,24 @@ namespace SaharaServer
         {
             _listener = new TcpListener(IPAddress.IPv6Any, _port);
 
-            _listener?.server?.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
+            _listener?.Server?.SetSocketOption(SocketOptionLevel.IPv6, SocketOptionName.IPv6Only, false);
         }
 
         public async Task StartAndListenAsync()
         {
             _listener?.Start();
 
+            
             Console.WriteLine("Server started. Listening for connections...");
 
-            while (GlobalProxySelection.g_isRunning)
+            while (Globals.g_isRunning)
             {
                 var tcpClient = await _listener.AcceptTcpClientAsync();
-                var clientData = new ClientData(tcpClient);
+                var userData = new UserData(tcpClient);
                 Console.WriteLine("Accepted connection");
 
-                var newConnection = new ClientConnection(clientData);
-
-                await Task.Factory.StartNew(() => newConnection?.HandleClientEvents(), TaskCreationOptions.LongRunning).ConfigureAwait(false);
+                var newConnection = new UserConnection(userData);
+                await Task.Factory.StartNew(() => newConnection?.HandleUserEvents(), TaskCreationOptions.LongRunning).ConfigureAwait(false);
             }
         }
     }
