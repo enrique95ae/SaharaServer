@@ -9,7 +9,7 @@ namespace SaharaServer
 {
     public class DatabaseManager : BaseSingleton<DatabaseManager>
     {
-        private const string _dbSource = "XXXXXXXXXXXXXXXXXX";
+        private const string _dbSource = "Data Source=SaharaDB.db";
         private readonly Random rng = new Random();
 
         public bool CreateAccount(string email, string password)
@@ -20,7 +20,7 @@ namespace SaharaServer
 
             string sqlInsert = $"insert into AccountData (Tag, Email, Password) values('{tag}', '{email}', '{password}')";
 
-            using (var connection = new SQLiteConnection("XXXXXXXXXXXXX"))
+            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
             {
                 connection.Open();
 
@@ -81,7 +81,7 @@ namespace SaharaServer
 
             string sqlQuery = $"select * from AccountData where Email='{email}";
 
-            using (var connection = new SQLiteConnection("XXXXXXXXXXXXXXXX"))
+            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
             {
                 try
                 {
