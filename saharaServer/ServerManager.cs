@@ -18,10 +18,6 @@ namespace SaharaServer
             Connections.Add(newConnection);
         }
 
-        public UserData FindUser(string email)
-        {
-            var userData = Connections.Find(user => user.GetUserData.AccountData.Tag.Equals(user));
-            return userData.GetUserData;
-        }
+
     }
 }

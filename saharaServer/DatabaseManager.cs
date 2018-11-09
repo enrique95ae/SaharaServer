@@ -12,13 +12,13 @@ namespace SaharaServer
         private const string _dbSource = "Data Source=SaharaDB.db";
         private readonly Random rng = new Random();
 
-        public bool CreateAccount(string email, string password)
+        public bool CreateAccount(string UserName, string UserEmail, string UserPassword)
         {
             int numRowsChanged = 0;
 
-            string tag = GenerateUserTag();
 
-            string sqlInsert = $"insert into AccountData (Tag, Email, Password) values('{tag}', '{email}', '{password}')";
+
+            string sqlInsert = $"insert into UserData (UserName, UserEmail, UserPassword) values('{UserName}', '{UserEmail}', '{UserPassword}')";
 
             using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
             {
@@ -40,7 +40,7 @@ namespace SaharaServer
 
         public bool VerifyLoginInfo(string email, string password)
         {
-            string sqlSelect = $"select Password from AccountData where Email='{email}'";
+            string sqlSelect = $"select Password from UserData where Email='{email}'";
 
             using (var connection = new SQLiteConnection(_dbSource))
             {
@@ -72,20 +72,20 @@ namespace SaharaServer
         }
 
 
-        public AccountData GetAccountData(string email)
+        public UserData GetUserData(string email)
         {
             if (String.IsNullOrWhiteSpace(email))
             {
                 return null;
             }
 
-            string sqlQuery = $"select * from AccountData where Email='{email}";
+            string sqlQuery = $"select * from UserData where Email='{email}";
 
             using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
             {
                 try
                 {
-                    var accountData = connection.QuerySingle<AccountData>(sqlQuery);
+                    var accountData = connection.QuerySingle<UserData>(sqlQuery);
 
                     if (accountData != null)
                     {

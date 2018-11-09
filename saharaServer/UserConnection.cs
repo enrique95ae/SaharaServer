@@ -6,19 +6,19 @@ namespace SaharaServer
 {
     public class UserConnection
     {
-        private UserData _userData;
+        private Connection _userData;
         private readonly Object                     _lock = new object();
         private readonly ServerEventProcessor       _serverEventProcessor;
 
-        public UserData GetUserData { get => _userData; }
+        public Connection GetUserData { get => _userData; }
 
         public UserConnection()
         {
-            _userData = new UserData();
+            _userData = new  Connection();
             _serverEventProcessor = ServerEventProcessor.Instance;
         }
 
-        public UserConnection(UserData userData)
+        public UserConnection(Connection userData)
         {
             if(userData != null)
             {
@@ -26,7 +26,7 @@ namespace SaharaServer
             }
             else
             {
-                _userData = new UserData();
+                _userData = new Connection();
             }
 
             _serverEventProcessor = ServerEventProcessor.Instance;
@@ -38,7 +38,7 @@ namespace SaharaServer
             {
                 while(Globals.g_isRunning)
                 {
-                    var eventData = Serializer.DeserializeWithLengthPrefix<BaseEvent>(_userData.ClientStream, PrefixStyle.Base128);
+                    var eventData = Serializer.DeserializeWithLengthPrefix<BaseEvent>(_userData.UserStream, PrefixStyle.Base128);
 
                     Console.WriteLine($"Read event of type: {eventData.GetType().Name}");
 

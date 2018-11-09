@@ -8,9 +8,9 @@ namespace SaharaServer
     {
         private readonly DatabaseManager _dbManager = DatabaseManager.Instance;
         private bool _processSuccess;
-        private UserData _userData;
+        private Connection _userData;
 
-        public void Process(ref BaseEvent eventData, ref UserData userData)
+        public void Process(ref BaseEvent eventData, ref Connection userData)
         {
             _userData = userData;
 
@@ -23,8 +23,8 @@ namespace SaharaServer
                     ProcessLogin(eventData as LoginEvent);
                     break;
 
-                case EventType.GetAccountData:
-                    ProcessGetAccountInfo(eventData as AccountData);
+                case EventType.GetUserData:
+                    ProcessGetAccountInfo(eventData as UserData);
                     break;
 
                 default:
@@ -32,11 +32,11 @@ namespace SaharaServer
             }
         }
 
-        private void ProcessCreateAccount(CreateAccountEvent newAccountData)
+        private void ProcessCreateAccount(CreateAccountEvent newUserData)
         {
             Console.WriteLine("Processing CreateAccountEvent...");
 
-            _processSuccess = _dbManager.CreateAccount(newAccountData.Email, newAccountData.Password);
+            _processSuccess = _dbManager.CreateAccount(newUserData.UserName,newUserData.Email, newUserData.Email);
 
             ServerReply(new ResponseEvent(_processSuccess));
         }
@@ -50,20 +50,20 @@ namespace SaharaServer
             ServerReply(new ResponseEvent(_processSuccess));
         }
 
-        private void ProcessGetAccountInfo(AccountData accountData)
+        private void ProcessGetAccountInfo(UserData userData)
         {
-            Console.WriteLine("Processing GetAccountData Event...");
+            Console.WriteLine("Processing GetUserData Event...");
 
-            accountData = _dbManager.GetAccountData(accountData.Email);
+            userData = _dbManager.GetUserData(userData.UserEmail);
 
-            ServerReply(accountData);
+            ServerReply(userData);
         }
 
         private void ServerReply<T>(T message)
         {
             try
             {
-                Serializer.SerializeWithLengthPrefix(_userData.ClientStream, message, PrefixStyle.Base128);
+                Serializer.SerializeWithLengthPrefix(_userData.UserStream, message, PrefixStyle.Base128);
 
             }
             catch (Exception e)

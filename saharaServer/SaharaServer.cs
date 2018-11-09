@@ -28,7 +28,7 @@ namespace SaharaServer
             while (Globals.g_isRunning)
             {
                 var tcpClient = await _listener.AcceptTcpClientAsync();
-                var userData = new UserData(tcpClient);
+                var userData = new Connection(tcpClient);
                 Console.WriteLine("Accepted connection");
 
                 var newConnection = new UserConnection(userData);

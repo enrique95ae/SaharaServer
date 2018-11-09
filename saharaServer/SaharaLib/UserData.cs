@@ -1,32 +1,35 @@
-﻿using System.Net.Sockets;
+﻿using System;
+using ProtoBuf;
 
 namespace SaharaLib
 {
-    public class UserData
+    [ProtoContract]
+    public class UserData : BaseEvent
     {
-        public AccountData AccountData { get; set; }
-        public TcpClient TcpClient { get; set; }
-        public NetworkStream ClientStream { get; set; }
+        [ProtoMember(1)]
+        public string UserName { get; set; }
+
+        [ProtoMember(2)]
+        public string UserEmail { get; set; }
+
+        [ProtoMember(3)]
+        public string UserPassword { get; set; }
 
         public UserData()
         {
-            AccountData = new AccountData();
-            TcpClient = null;
-            ClientStream = null;
+            Type = EventType.GetUserData;
+            UserName = null;
+            UserEmail = null;
+            UserPassword = null;
         }
 
-        public UserData(TcpClient tcpClient)
+        public UserData(string userName, string userEmail, string userPassword)
         {
-            AccountData = new AccountData();
-            TcpClient = tcpClient;
-            ClientStream = tcpClient.GetStream();
-        }
+            Type = EventType.GetUserData;
+            UserName = userName;
+            UserEmail = userEmail;
+            UserPassword = userPassword;
 
-        public UserData(AccountData accountData, TcpClient tcpClient)
-        {
-            AccountData = accountData;
-            TcpClient = tcpClient;
-            ClientStream = tcpClient.GetStream();
         }
     }
 }
