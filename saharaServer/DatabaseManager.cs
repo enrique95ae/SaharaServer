@@ -9,18 +9,18 @@ namespace SaharaServer
 {
     public class DatabaseManager : BaseSingleton<DatabaseManager>
     {
-        private const string _dbSource = "Data Source=SaharaDB.db";
+        private const string _dbSource = "Data Source = SaharaDB.db";
         private readonly Random rng = new Random();
 
-        public bool CreateAccount(string UserName, string UserEmail, string UserPassword)
+        public bool CreateAccount(string UserName, string UserEmail, string UserPassword, string UserRepeatPassword)
         {
             int numRowsChanged = 0;
 
-
+            
 
             string sqlInsert = $"insert into UserData (UserName, UserEmail, UserPassword) values('{UserName}', '{UserEmail}', '{UserPassword}')";
 
-            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
+            using (var connection = new SQLiteConnection(_dbSource))
             {
                 connection.Open();
 
@@ -81,7 +81,7 @@ namespace SaharaServer
 
             string sqlQuery = $"select * from UserData where Email='{email}";
 
-            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
+            using (var connection = new SQLiteConnection(_dbSource))
             {
                 try
                 {
@@ -101,12 +101,6 @@ namespace SaharaServer
             }
         }
 
-        private string GenerateUserTag()
-        {
-            string tag = rng.Next(0, 9999).ToString("D4");
-
-            return tag;
-        }
     }
 }
 

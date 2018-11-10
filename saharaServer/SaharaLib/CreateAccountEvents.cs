@@ -6,26 +6,33 @@ namespace SaharaLib
     public class CreateAccountEvent : BaseEvent
     {
         [ProtoMember(1)]
-        public string Email { get; set; }
+        public string UserEmail { get; set; }
 
         [ProtoMember(2)]
         public string UserName { get; set; }
 
         [ProtoMember(3)]
-        public string Password { get; set; }
+        public string UserPassword { get; set; }
+
+        [ProtoMember(4)]
+        public string UserRepeatPassword { get; set; }
 
         public CreateAccountEvent()
         {
             Type = EventType.CreateAccount;
-            Email = null;
-            Password = null;
+            UserName = null;
+            UserEmail = null;
+            UserPassword = null;
+            UserRepeatPassword = null;
         }
 
-        public CreateAccountEvent(string email, string password)
+        public CreateAccountEvent(string name, string email, string password, string repeatPasword)
         {
             Type = EventType.CreateAccount;
-            Email = email;
-            Password = password;
+            UserName = name;
+            UserEmail = email;
+            UserPassword = password;
+            UserRepeatPassword = repeatPasword;
         }
     }
 }
