@@ -13,7 +13,7 @@ namespace SaharaServer
         public void Process(ref BaseEvent eventData, ref Connection userData)
         {
             _userData = userData;
-
+            
             switch (eventData.Type)
             {
                 case EventType.CreateAccount:

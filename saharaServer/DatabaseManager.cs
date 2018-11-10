@@ -15,8 +15,7 @@ namespace SaharaServer
         public bool CreateAccount(string UserName, string UserEmail, string UserPassword, string UserRepeatPassword)
         {
             int numRowsChanged = 0;
-
-            
+             
 
             string sqlInsert = $"insert into UserData (UserName, UserEmail, UserPassword) values('{UserName}', '{UserEmail}', '{UserPassword}')";
 
@@ -71,7 +70,6 @@ namespace SaharaServer
             return false;
         }
 
-
         public UserData GetUserData(string email)
         {
             if (String.IsNullOrWhiteSpace(email))
@@ -100,7 +98,7 @@ namespace SaharaServer
                 return null;
             }
         }
-
+    
     }
 }
 
