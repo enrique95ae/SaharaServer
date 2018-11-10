@@ -26,7 +26,7 @@ namespace SaharaLib
             UserRepeatPassword = null;
         }
 
-        public CreateAccountEvent(string name, string email, string password, string repeatPasword)
+        public CreateAccountEvent(string name , string email, string password , string repeatPasword)
         {
             Type = EventType.CreateAccount;
             UserName = name;

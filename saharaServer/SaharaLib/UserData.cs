@@ -23,7 +23,7 @@ namespace SaharaLib
             UserPassword = null;
         }
 
-        public UserData(string userName, string userEmail, string userPassword)
+        public UserData(string userName , string userEmail , string userPassword )
         {
             Type = EventType.GetUserData;
             UserName = userName;
