@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿ using ProtoBuf;
 
 namespace SaharaLib
 {
@@ -17,8 +17,8 @@ namespace SaharaLib
         public ResponseEvent(bool processSuccess)
         {
             Type = EventType.Response;
-            //EventProcessSuccess = processSuccess;
-            EventProcessSuccess = true;
+            EventProcessSuccess = processSuccess;
+           //EventProcessSuccess = true;
         }
 
     }

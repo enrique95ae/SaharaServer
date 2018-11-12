@@ -16,7 +16,6 @@ namespace SaharaServer
         {
             int numRowsChanged = 0;
              
-
             string sqlInsert = $"insert into UserData (UserEmail, UserPassword) values('{UserEmail}', '{UserPassword}')";
 
             using (var connection = new SQLiteConnection(_dbSource))

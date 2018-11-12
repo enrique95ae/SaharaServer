@@ -1,11 +1,18 @@
 ﻿using SaharaLib;
 using ProtoBuf;
 using System;
+using System.Data.SQLite;
+using Dapper;
+using System.Linq;
+
 
 namespace SaharaServer
 {
+
+
     public class ServerEventProcessor : BaseSingleton<ServerEventProcessor>
     {
+        private const string _dbSource = "Data Source = /Users/enriquealonsoesposito/Desktop/SaharaDB.db";
         private readonly DatabaseManager _dbManager = DatabaseManager.Instance;
         private bool _processSuccess;
         private Connection _userData;
@@ -55,7 +62,16 @@ namespace SaharaServer
         {
             Console.WriteLine("Processing CreateAccountEvent...");
 
-            _processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
+            //_processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
+
+            if(newUserData.UserEmail != null && newUserData.UserPassword != null)
+            {
+                _processSuccess = true; 
+            }
+            else
+            {
+                _processSuccess = false;
+            }
 
             ServerReply(new ResponseEvent(_processSuccess));
         }
@@ -64,9 +80,35 @@ namespace SaharaServer
         {
             Console.WriteLine("Processing LoginEvent...");
 
-            _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
+            // _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
 
-            ServerReply(new ResponseEvent(_processSuccess));
+            var email = loginData._Email;
+            var password = loginData._Password;
+
+            string sqlSelect = $"select UserPassword from UserData where UserEmail='{email}'";
+
+
+            using (var connection = new SQLiteConnection(_dbSource))
+            {
+                connection.Open();
+
+                    var selectedPassword = connection.Query<string>(sqlSelect).First();
+
+                    Console.WriteLine($"Trying to find {email}'s password: {password}");
+                    Console.WriteLine($"Found password: {selectedPassword}");
+
+                if (selectedPassword == password)   
+                {
+                    Console.WriteLine("Passwords were equal");
+                    ServerReply(new ResponseEvent(true));
+                }
+                else
+                {
+                    ServerReply(new ResponseEvent(false));
+                }
+            }
+
+            //ServerReply(new ResponseEvent(_processSuccess));
             //ServerReply(new ResponseEvent(true));
 
         }
