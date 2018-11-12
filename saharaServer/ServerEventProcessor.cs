@@ -19,12 +19,27 @@ namespace SaharaServer
                 case EventType.CreateAccount:
                     ProcessCreateAccount(eventData as CreateAccountEvent);
                     break;
+
                 case EventType.Login:
                     ProcessLogin(eventData as LoginEvent);
                     break;
 
+                /*
+                case EventType.Logout:
+                    ProcessLogout();
+                    break;
+                */
+
                 case EventType.GetUserData:
                     ProcessGetAccountInfo(eventData as UserData);
+                    break;
+
+                case EventType.GetItemData:
+                    ProcessGetItemData(eventData as ItemData);
+                    break;
+
+                case EventType.UpdateUserBillingInfo:
+                    ProcessUpdateBillingInfo(eventData as BillingInfo);
                     break;
 
                 default:
@@ -50,6 +65,17 @@ namespace SaharaServer
             ServerReply(new ResponseEvent(_processSuccess));
         }
 
+        /*
+        private void ProcessLogout(LogoutEvent logoutData)
+        {
+            Console.WriteLine("Processing LoginEvent...");
+
+            _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
+
+            ServerReply(new ResponseEvent(_processSuccess));
+        }
+        */
+
         private void ProcessGetAccountInfo(UserData userData)
         {
             Console.WriteLine("Processing GetUserData Event...");
@@ -57,6 +83,24 @@ namespace SaharaServer
             userData = _dbManager.GetUserData(userData.UserEmail);
 
             ServerReply(userData);
+        }
+
+        private void ProcessGetItemData(ItemData itemData)
+        {
+            Console.WriteLine("Processing GetItemData Event...");
+
+            itemData = _dbManager.GetItemData(itemData.ItemName);
+
+            ServerReply(itemData);
+        }
+
+        private void ProcessUpdateBillingInfo(BillingInfo billingInfo)
+        {
+            Console.WriteLine("Processing UpdateBillingInfo Event...");
+
+            billingInfo = _dbManager.UpdateBillingInfo(billingInfo.UserEmail);
+
+            ServerReply(billingInfo);
         }
 
         private void ServerReply<T>(T message)
