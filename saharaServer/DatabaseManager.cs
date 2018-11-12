@@ -39,7 +39,7 @@ namespace SaharaServer
 
         public bool VerifyLoginInfo(string email, string password)
         {
-            string sqlSelect = $"select Password from UserData where Email='{email}'";
+            string sqlSelect = $"select UserPassword from UserData where UserEmail='{email}'";
 
             using (var connection = new SQLiteConnection(_dbSource))
             {
@@ -77,7 +77,7 @@ namespace SaharaServer
                 return null;
             }
 
-            string sqlQuery = $"select * from UserData where Email='{email}";
+            string sqlQuery = $"select * from UserData where UserEmail='{email}";
 
             using (var connection = new SQLiteConnection(_dbSource))
             {

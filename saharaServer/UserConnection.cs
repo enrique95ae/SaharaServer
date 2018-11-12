@@ -6,7 +6,7 @@ namespace SaharaServer
 {
     public class UserConnection
     {
-        private Connection _userData;
+        private Connection                          _userData;
         private readonly Object                     _lock = new object();
         private readonly ServerEventProcessor       _serverEventProcessor;
 
@@ -31,6 +31,7 @@ namespace SaharaServer
 
             _serverEventProcessor = ServerEventProcessor.Instance;
         }
+
 
         public void HandleUserEvents()
         {
