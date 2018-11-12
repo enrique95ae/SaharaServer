@@ -127,6 +127,35 @@ namespace SaharaServer
                 return null;
             }
         }
+
+        public BillingInfo UpdateBillingInfo(string UserEmail)
+        {
+            if (String.IsNullOrWhiteSpace(UserEmail))
+            {
+                return null;
+            }
+
+            string sqlQuery = $"select * from BillingInfo";
+
+            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
+            {
+                try
+                {
+                    var BillingInfo = connection.QuerySingle<BillingInfo>(sqlQuery);
+
+                    if (BillingInfo != null)
+                    {
+                        return BillingInfo;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Database: Error selecting billing information");
+                    Console.WriteLine(e);
+                }
+                return null;
+            }
+        }
     }
 }
 

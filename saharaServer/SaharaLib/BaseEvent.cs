@@ -20,7 +20,7 @@ namespace SaharaLib
     [ProtoInclude(52, typeof(ResponseEvent))]
     [ProtoInclude(53, typeof(UserData))]
     [ProtoInclude(54, typeof(ItemData))]
-    [ProtoInclude(55, typeof(/*CLASS HERE*/))]
+    [ProtoInclude(55, typeof(BillingInfo))]
     public class BaseEvent
     {
         [ProtoMember(1)]

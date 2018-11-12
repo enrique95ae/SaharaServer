@@ -24,7 +24,6 @@ namespace SaharaLib
             Type = EventType.GetUserData;
             UserEmail = email;
             UserPassword = password;
-
         }
     }
 }

@@ -24,9 +24,11 @@ namespace SaharaServer
                     ProcessLogin(eventData as LoginEvent);
                     break;
 
+                /*
                 case EventType.Logout:
                     ProcessLogout();
                     break;
+                */
 
                 case EventType.GetUserData:
                     ProcessGetAccountInfo(eventData as UserData);
@@ -34,6 +36,10 @@ namespace SaharaServer
 
                 case EventType.GetItemData:
                     ProcessGetItemData(eventData as ItemData);
+                    break;
+
+                case EventType.UpdateUserBillingInfo:
+                    ProcessUpdateBillingInfo(eventData as BillingInfo);
                     break;
 
                 default:
@@ -86,6 +92,15 @@ namespace SaharaServer
             itemData = _dbManager.GetItemData(itemData.ItemName);
 
             ServerReply(itemData);
+        }
+
+        private void ProcessUpdateBillingInfo(BillingInfo billingInfo)
+        {
+            Console.WriteLine("Processing UpdateBillingInfo Event...");
+
+            billingInfo = _dbManager.UpdateBillingInfo(billingInfo.UserEmail);
+
+            ServerReply(billingInfo);
         }
 
         private void ServerReply<T>(T message)
