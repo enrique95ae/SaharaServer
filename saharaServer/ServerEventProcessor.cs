@@ -42,6 +42,10 @@ namespace SaharaServer
                     ProcessUpdateBillingInfo(eventData as BillingInfo);
                     break;
 
+                case EventType.UpdateUserPaymentInfo:
+                    ProcessUpdatePaymentInfo(eventData as PaymentInfo);
+                    break;
+
                 default:
                     return;
             }
@@ -103,6 +107,15 @@ namespace SaharaServer
             billingInfo = _dbManager.UpdateBillingInfo(billingInfo.UserEmail);
 
             ServerReply(billingInfo);
+        }
+
+        private void ProcessUpdatePaymentInfo(PaymentInfo paymentInfo)
+        {
+            Console.WriteLine("Processing UpdatePaymentInfo Event...");
+
+            paymentInfo = _dbManager.UpdatePaymentInfo(paymentInfo.UserCreditCardNumber);
+
+            ServerReply(paymentInfo);
         }
 
         private void ServerReply<T>(T message)
