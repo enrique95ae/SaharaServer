@@ -70,6 +70,13 @@ namespace SaharaServer
             return false;
         }
 
+        /*
+        public bool VerifyLogout(string email, string password)
+        {
+
+        }
+        */
+
         public UserData GetUserData(string email)
         {
             if (String.IsNullOrWhiteSpace(email))
@@ -151,6 +158,35 @@ namespace SaharaServer
                 catch (Exception e)
                 {
                     Console.WriteLine("Database: Error selecting billing information");
+                    Console.WriteLine(e);
+                }
+                return null;
+            }
+        }
+
+        public PaymentInfo UpdatePaymentInfo(string UserCreditCardNumber)
+        {
+            if (String.IsNullOrWhiteSpace(UserCreditCardNumber))
+            {
+                return null;
+            }
+
+            string sqlQuery = $"select * from PaymentInfo";
+
+            using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
+            {
+                try
+                {
+                    var PaymentInfo = connection.QuerySingle<PaymentInfo>(sqlQuery);
+
+                    if (PaymentInfo != null)
+                    {
+                        return PaymentInfo;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Database: Error selecting payment information");
                     Console.WriteLine(e);
                 }
                 return null;

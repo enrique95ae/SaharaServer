@@ -12,6 +12,7 @@ namespace SaharaLib
         GetUserData,
         GetItemData,
         UpdateUserBillingInfo,
+        UpdateUserPaymentInfo,
     }
 
     [ProtoContract]
@@ -21,6 +22,7 @@ namespace SaharaLib
     [ProtoInclude(53, typeof(UserData))]
     [ProtoInclude(54, typeof(ItemData))]
     [ProtoInclude(55, typeof(BillingInfo))]
+    [ProtoInclude(56, typeof(PaymentInfo))]
     public class BaseEvent
     {
         [ProtoMember(1)]
