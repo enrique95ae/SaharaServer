@@ -13,7 +13,7 @@ namespace SaharaLib
         public string _ErrorMessage { get; set; }
         */
 
-        [ProtoMember(3)]
+        [ProtoMember(1)]
         public bool EventProcessSuccess { get; set; }
 
         public ResponseEvent()
