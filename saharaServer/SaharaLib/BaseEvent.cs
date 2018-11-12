@@ -10,6 +10,8 @@ namespace SaharaLib
         Logout,
         Response,
         GetUserData,
+        GetItemData,
+        UpdateUserBillingInfo,
     }
 
     [ProtoContract]
