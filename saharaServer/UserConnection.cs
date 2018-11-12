@@ -41,12 +41,7 @@ namespace SaharaServer
                 {
                     var eventData = Serializer.DeserializeWithLengthPrefix<BaseEvent>(_userData.UserStream, PrefixStyle.Base128);
 
-                    if (eventData == null)
-                    {
-                        Console.WriteLine("ITS NULL, WE FOUND IT!");
-                    }
-
-                    Console.WriteLine($"Read event of type: {eventData.GetType().Name}");
+                    Console.WriteLine($"Read event of type: {eventData.GetType()}");
 
                     lock(_lock)
                     {
