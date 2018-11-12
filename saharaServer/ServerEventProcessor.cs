@@ -63,6 +63,8 @@ namespace SaharaServer
             _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
 
             ServerReply(new ResponseEvent(_processSuccess));
+            //ServerReply(new ResponseEvent(true));
+
         }
 
         /*

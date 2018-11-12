@@ -41,7 +41,7 @@ namespace SaharaServer
                 {
                     var eventData = Serializer.DeserializeWithLengthPrefix<BaseEvent>(_userData.UserStream, PrefixStyle.Base128);
 
-                    Console.WriteLine($"Read event of type: {eventData.GetType()}");
+                    Console.WriteLine($"Read event of type: {eventData.GetType().Name}");
 
                     lock(_lock)
                     {
@@ -51,7 +51,7 @@ namespace SaharaServer
             }
             catch(Exception e)
             {
-                Console.WriteLine($"Caught an exception of type {e.GetType()}.");
+                Console.WriteLine($"Caught an exception of type {e.GetType()}");
                 Console.WriteLine(e.ToString());
             }
         }
