@@ -12,12 +12,12 @@ namespace SaharaServer
         private const string _dbSource = "Data Source = /Users/enriquealonsoesposito/Desktop/SaharaDB.db";
         private readonly Random rng = new Random();
 
-        public bool CreateAccount(string UserName, string UserEmail, string UserPassword, string UserRepeatPassword)
+        public bool CreateAccount(string UserEmail, string UserPassword)
         {
             int numRowsChanged = 0;
              
 
-            string sqlInsert = $"insert into UserData (UserName, UserEmail, UserPassword) values('{UserName}', '{UserEmail}', '{UserPassword}')";
+            string sqlInsert = $"insert into UserData (UserEmail, UserPassword) values('{UserEmail}', '{UserPassword}')";
 
             using (var connection = new SQLiteConnection(_dbSource))
             {
