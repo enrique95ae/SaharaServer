@@ -7,13 +7,13 @@ namespace SaharaLib
     public class UserData : BaseEvent
     {
         [ProtoMember(1)]
-        public string UserName { get; set; }
-
-        [ProtoMember(2)]
         public string UserEmail { get; set; }
 
-        [ProtoMember(3)]
+        [ProtoMember(2)]
         public string UserPassword { get; set; }
+
+        [ProtoMember(3)]
+        public string UserName { get; set; }
 
         public UserData()
         {
