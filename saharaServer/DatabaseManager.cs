@@ -9,7 +9,7 @@ namespace SaharaServer
 {
     public class DatabaseManager : BaseSingleton<DatabaseManager>
     {
-        private const string _dbSource = "Data Source = /Users/enriquealonsoesposito/Desktop/SaharaDB.db";
+        private const string _dbSource = "Data Source = C:/Users/Hann/Downloads/SaharaDB(1).db";
         private readonly Random rng = new Random();
 
         public bool CreateAccount(string UserEmail, string UserPassword)
