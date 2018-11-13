@@ -106,7 +106,7 @@ namespace SaharaServer
                 {
                     ServerReply(new ResponseEvent(false));
                 }
-            }
+            } 
 
             //ServerReply(new ResponseEvent(_processSuccess));
             //ServerReply(new ResponseEvent(true));
