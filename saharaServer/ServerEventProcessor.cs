@@ -62,16 +62,16 @@ namespace SaharaServer
         {
             Console.WriteLine("Processing CreateAccountEvent...");
 
-            //_processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
+            _processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
 
-            if(newUserData.UserEmail != null && newUserData.UserPassword != null)
+          /*  if(newUserData.UserEmail != null && newUserData.UserPassword != null)
             {
                 _processSuccess = true; 
             }
             else
             {
                 _processSuccess = false;
-            }
+            } */
 
             ServerReply(new ResponseEvent(_processSuccess));
         }

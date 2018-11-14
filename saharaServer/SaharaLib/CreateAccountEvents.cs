@@ -25,4 +25,4 @@ namespace SaharaLib
             UserPassword = password;
         }
     }
-}
+} 
