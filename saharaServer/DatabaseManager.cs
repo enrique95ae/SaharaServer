@@ -4,6 +4,17 @@ using Dapper;
 using System.Linq;
 using SaharaLib;
 
+/*
+ * 
+ *  This file defines how the information insertion or retreival to or from the database will be handled.
+ *  For each possible interaction with the database there is an specific function.
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 
 namespace SaharaServer
 {
@@ -11,6 +22,15 @@ namespace SaharaServer
     {
         private const string _dbSource = "Data Source = /Users/enriquealonsoesposito/Desktop/SaharaDB.db";
         private readonly Random rng = new Random();
+
+
+
+
+        /*
+         * 
+         *  Handles the server-database interaction when the server receives a createaccount request from the client
+         * 
+         */
 
         public bool CreateAccount(string UserEmail, string UserPassword)
         {
@@ -41,6 +61,13 @@ namespace SaharaServer
             }
             return false;
         }
+
+
+        /*
+         * 
+         *  Handles the server-database interaction when the server receives a log in request from the client
+         * 
+         */
 
         public bool VerifyLoginInfo(string email, string password)
         {
@@ -82,6 +109,12 @@ namespace SaharaServer
         }
         */
 
+        /*
+         * 
+         *  Handles the server-database interaction when the server receives a get user data request from the client
+         * 
+         */
+
         public UserData GetUserData(string email)
         {
             if (String.IsNullOrWhiteSpace(email))
@@ -110,6 +143,12 @@ namespace SaharaServer
                 return null;
             }
         }
+
+        /*
+         * 
+         *  Handles the server-database interaction when the server receives a get info from item request from the client
+         * 
+         */
 
         public ItemData GetItemData(string ItemTitle)
         {
@@ -140,6 +179,13 @@ namespace SaharaServer
             }
         }
 
+        /*
+        * 
+        *  Handles the server-database interaction when the server receives a update billing info from item request from the client
+        * 
+        */
+
+
         public BillingInfo UpdateBillingInfo(string UserEmail)
         {
             if (String.IsNullOrWhiteSpace(UserEmail))
@@ -168,6 +214,13 @@ namespace SaharaServer
                 return null;
             }
         }
+
+
+        /*
+        * 
+        *  Handles the server-database interaction when the server receives a update payment info from item request from the client
+        * 
+        */
 
         public PaymentInfo UpdatePaymentInfo(string UserCreditCardNumber)
         {

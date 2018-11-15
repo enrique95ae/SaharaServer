@@ -1,6 +1,14 @@
 ﻿using System;
 using ProtoBuf;
 
+/*
+ * This file contains:
+ *  -Base for storing the billing info data coming from the server
+ *  later on, this data will be inserted into the DB.
+ *  -ProtoMembers.
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

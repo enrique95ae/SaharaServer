@@ -1,5 +1,15 @@
 ﻿using ProtoBuf;
 
+/*
+ * This file contains:
+ *  -The data used during the Create account event
+ *  -The pertinent ProtoMembers
+ * 
+ * 
+ * 
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

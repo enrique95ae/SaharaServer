@@ -1,6 +1,19 @@
 ﻿using System;
 using ProtoBuf;
 
+/*
+ * This file contains:
+ *  -Base event definition
+ *  -Event types enumeration
+ *  -ProtoIncludes list for the byte string that will be sent to the client.
+ * 
+ * 
+ * 
+ */
+
+
+
+
 namespace SaharaLib
 {
     public enum EventType

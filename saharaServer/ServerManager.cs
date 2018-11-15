@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using SaharaLib;
 
+
+//For multiple connections simultaneously.
+
 namespace SaharaServer
 {
     public class ServerManager : BaseSingleton<ServerManager>

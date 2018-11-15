@@ -1,6 +1,12 @@
 ﻿using ProtoBuf;
 using System;
 
+/*
+ * This file contains:
+ *      -Object type definition for holding the log in pertinent data.
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

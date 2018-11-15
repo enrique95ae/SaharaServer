@@ -1,6 +1,17 @@
 ﻿using System;
 using ProtoBuf;
 
+
+/*
+ * This file contains:
+ *  -Item data model.
+ *  -This will hold the item data coming from the client or ready to be sent to the client.
+ * 
+ * 
+ * 
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

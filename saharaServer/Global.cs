@@ -1,4 +1,10 @@
-﻿namespace SaharaServer
+﻿//If connection 
+
+
+
+
+
+namespace SaharaServer
 {
     public static class Globals
     {

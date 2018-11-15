@@ -5,6 +5,8 @@ using System.Data.SQLite;
 using Dapper;
 using System.Linq;
 
+//In this file we define the behavior of the server depending on the type of event going on.
+
 
 namespace SaharaServer
 {

@@ -1,6 +1,12 @@
 ﻿using System;
 using ProtoBuf;
 
+/*
+ * This file contains:
+ *      -Object type definition for holding payment data.
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

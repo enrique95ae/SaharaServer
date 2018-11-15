@@ -1,5 +1,16 @@
 ﻿using System.Net.Sockets;
 
+
+/*
+ * This file contains:
+ *  
+ *  -Connection class to hold the pertinent data
+ *  -Constructors
+ * 
+ * 
+ * 
+ */
+
 namespace SaharaLib
 {
     public class Connection

@@ -1,5 +1,11 @@
 ﻿ using ProtoBuf;
 
+/*
+ * This file contains:
+ *      -Object type definition for the varaible that will be creating during server-client responses exchange.
+ * 
+ */
+
 namespace SaharaLib
 {
     [ProtoContract]

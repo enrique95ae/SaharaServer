@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using SaharaLib;
 using System;
 
+//Handles the incomming connection resquests
+
 namespace SaharaServer
 {
     public class SaharaServer

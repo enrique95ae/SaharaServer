@@ -2,6 +2,8 @@
 using SaharaLib;
 using ProtoBuf;
 
+//Handles the user connection.
+
 namespace SaharaServer
 {
     public class UserConnection
