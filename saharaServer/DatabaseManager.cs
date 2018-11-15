@@ -102,7 +102,7 @@ namespace SaharaServer
             return false;
         }
 
-        /*
+        /*  Commented out until implemented
         public bool VerifyLogout(string email, string password)
         {
 

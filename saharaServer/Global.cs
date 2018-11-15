@@ -1,7 +1,4 @@
-﻿//If connection 
-
-
-
+﻿//If connection is running
 
 
 namespace SaharaServer
