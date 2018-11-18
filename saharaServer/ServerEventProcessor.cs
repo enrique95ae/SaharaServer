@@ -5,7 +5,7 @@ using System.Data.SQLite;
 using Dapper;
 using System.Linq;
 
-//In this file we define the behavior of the server depending on the type of event going on.
+//In this file we define the behavior of the server depending on the type of event going on. 
 
 
 namespace SaharaServer
@@ -17,7 +17,8 @@ namespace SaharaServer
         private const string _dbSource = "Data Source = /Users/enriquealonsoesposito/Desktop/SaharaDB.db";
         private readonly DatabaseManager _dbManager = DatabaseManager.Instance;
         private bool _processSuccess;
-        private Connection _userData;
+        private Connection _userData; 
+        private readonly Object _lock = new object();
 
         public void Process(ref BaseEvent eventData, ref Connection userData)
         {
@@ -82,35 +83,42 @@ namespace SaharaServer
         {
             Console.WriteLine("Processing LoginEvent...");
 
-            // _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
+            _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
 
             var email = loginData._Email;
             var password = loginData._Password;
 
             string sqlSelect = $"select UserPassword from UserData where UserEmail='{email}'";
 
-
-            using (var connection = new SQLiteConnection(_dbSource))
+            /*
+            lock(_lock)
             {
-                connection.Open();
+                using (var connection = new SQLiteConnection(_dbSource))
+                {
+                    connection.Open();
 
                     var selectedPassword = connection.Query<string>(sqlSelect).First();
 
                     Console.WriteLine($"Trying to find {email}'s password: {password}");
                     Console.WriteLine($"Found password: {selectedPassword}");
 
-                if (selectedPassword == password)   
-                {
-                    Console.WriteLine("Passwords were equal");
-                    ServerReply(new ResponseEvent(true));
+                    if (selectedPassword == password)
+                    {
+                        Console.WriteLine("Passwords were equal");
+                        ServerReply(new ResponseEvent(true));
+                    }
+                    else
+                    {
+                        ServerReply(new ResponseEvent(false));
+                    }
+
                 }
-                else
-                {
-                    ServerReply(new ResponseEvent(false));
-                }
+
             } 
 
-            //ServerReply(new ResponseEvent(_processSuccess));
+            */
+
+            ServerReply(new ResponseEvent(_processSuccess));
             //ServerReply(new ResponseEvent(true));
 
         }
