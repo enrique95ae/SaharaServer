@@ -150,7 +150,7 @@ namespace SaharaServer
          * 
          */
 
-        public ItemData GetItemData(string ItemTitle)
+        public GetItemDataEvent GetItemData(string ItemTitle)
         {
             if (String.IsNullOrWhiteSpace(ItemTitle))
             {
@@ -163,7 +163,7 @@ namespace SaharaServer
             {
                 try
                 {
-                    var ItemData = connection.QuerySingle<ItemData>(sqlQuery);
+                    var ItemData = connection.QuerySingle<GetItemDataEvent>(sqlQuery);
 
                     if (ItemData != null)
                     {

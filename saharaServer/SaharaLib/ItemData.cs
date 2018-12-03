@@ -15,31 +15,31 @@ using ProtoBuf;
 namespace SaharaLib
 {
     [ProtoContract]
-    public class ItemData : BaseEvent
+    public class GetItemDataEvent : BaseEvent
     {
         [ProtoMember(1)]
-        public int? ID { get; set; }
+        public string ItemTitle { get; set; }
 
         [ProtoMember(2)]
-        public string ItemName { get; set; }
+        public string ItemDescription { get; set; }
 
         [ProtoMember(3)]
-        public int? Quantity { get; set; }
+        public double ItemPrice { get; set; }
 
-        public ItemData()
+        public GetItemDataEvent()
         {
             Type = EventType.GetItemData;
-            ID = null;
-            ItemName = null;
-            Quantity = null;
+            ItemTitle = null;
+            ItemDescription = null;
+            ItemPrice = 0.0;
         }
 
-        public ItemData(int id, string itemName, int quantity)
+        public GetItemDataEvent(string title, string description, double price)
         {
             Type = EventType.GetItemData;
-            ID = id;
-            ItemName = itemName;
-            Quantity = quantity;
+            ItemTitle = title;
+            ItemDescription = description;
+            ItemPrice = price;
         }
     }
 }
