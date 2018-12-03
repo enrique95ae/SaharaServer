@@ -34,7 +34,7 @@ namespace SaharaServer
                     ProcessLogin(eventData as LoginEvent);
                     break;
 
-                /*
+                /* Commented out until implemented
                 case EventType.Logout:
                     ProcessLogout();
                     break;
@@ -67,6 +67,7 @@ namespace SaharaServer
 
             _processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
 
+            //Email and Password verification to be implemented
           /*  if(newUserData.UserEmail != null && newUserData.UserPassword != null)
             {
                 _processSuccess = true; 
@@ -84,6 +85,9 @@ namespace SaharaServer
             Console.WriteLine("Processing LoginEvent...");
 
             _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
+
+            //debug
+            // _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
 
             var email = loginData._Email;
             var password = loginData._Password;
@@ -123,7 +127,7 @@ namespace SaharaServer
 
         }
 
-        /*
+        /* Commented out until implemented
         private void ProcessLogout(LogoutEvent logoutData)
         {
             Console.WriteLine("Processing LoginEvent...");
@@ -134,6 +138,11 @@ namespace SaharaServer
         }
         */
 
+
+        /*
+            Process event functions:
+            Prints to console and then makes database call and sends result to server
+        */
         private void ProcessGetAccountInfo(UserData userData)
         {
             Console.WriteLine("Processing GetUserData Event...");

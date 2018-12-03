@@ -14,12 +14,14 @@ namespace SaharaServer
 
         public Connection GetUserData { get => _userData; }
 
+        //user connection constructor
         public UserConnection()
         {
             _userData = new  Connection();
             _serverEventProcessor = ServerEventProcessor.Instance;
         }
 
+        //user connection with data
         public UserConnection(Connection userData)
         {
             if(userData != null)
@@ -34,7 +36,7 @@ namespace SaharaServer
             _serverEventProcessor = ServerEventProcessor.Instance;
         }
 
-
+        //While a connection exists, attempts to Read and Process event
         public void HandleUserEvents()
         {
             try
@@ -45,7 +47,8 @@ namespace SaharaServer
 
                     Console.WriteLine($"Read event of type: {eventData.GetType().Name}");
 
-                    lock(_lock)
+                    //Mutex lock on each event process
+                    lock (_lock)
                     {
                         _serverEventProcessor.Process(ref eventData, ref _userData);
                     }
