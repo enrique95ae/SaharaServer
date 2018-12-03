@@ -15,7 +15,7 @@ using ProtoBuf;
 namespace SaharaLib
 {
     [ProtoContract]
-    public class ItemData : BaseEvent
+    public class GetItemDataEvent : BaseEvent
     {
 
         [ProtoMember(1)]
@@ -48,7 +48,7 @@ namespace SaharaLib
         [ProtoMember(10)]
         public string ItemImageSRC6 { get; set; }
 
-        public ItemData()
+        public GetItemDataEvent()
         {
             Type = EventType.GetItemData;
             ItemId = -1;
@@ -64,7 +64,7 @@ namespace SaharaLib
 
         }
 
-        public ItemData(int id, string title, string description, double price, string imageSRC1, string imageSRC2, string imageSRC3, string imageSRC4, string imageSRC5, string imageSRC6)
+        public GetItemDataEvent(int id, string title, string description, double price, string imageSRC1, string imageSRC2, string imageSRC3, string imageSRC4, string imageSRC5, string imageSRC6 )
         {
             Type = EventType.GetItemData;
             ItemId = id;

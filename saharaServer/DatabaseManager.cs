@@ -150,7 +150,7 @@ namespace SaharaServer
          * 
          */
 
-        public GetItemDataEvent GetItemData(int ItemID)
+        public ItemData GetItemData(int ItemID)
         {
             if (ItemID < 0) //make sure we are looking for a valid ID?
             {
@@ -163,7 +163,7 @@ namespace SaharaServer
             {
                 try
                 {
-                    var ItemData = connection.QuerySingle<GetItemDataEvent>(sqlQuery);
+                    var ItemData = connection.QuerySingle<ItemData>(sqlQuery);
 
                     if (ItemData != null)
                     {

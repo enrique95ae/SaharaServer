@@ -45,7 +45,7 @@ namespace SaharaServer
                     break;
 
                 case EventType.GetItemData:
-                    ProcessGetItemData(eventData as GetItemDataEvent);
+                    ProcessGetItemData(eventData as ItemData);
                     break;
 
                 case EventType.UpdateUserBillingInfo:
@@ -111,7 +111,7 @@ namespace SaharaServer
             ServerReply(userData);
         }
 
-        private void ProcessGetItemData(GetItemDataEvent itemData)
+        private void ProcessGetItemData(ItemData itemData)
         {
             Console.WriteLine("Processing GetItemData Event...");
 

@@ -32,8 +32,8 @@ namespace SaharaLib
     [ProtoInclude(50, typeof(CreateAccountEvent))]
     [ProtoInclude(51, typeof(LoginEvent))]
     [ProtoInclude(52, typeof(ResponseEvent))]
-    //[ProtoInclude(53, typeof(UserData))]
-    [ProtoInclude(54, typeof(GetItemDataEvent))]
+    [ProtoInclude(53, typeof(UserData))]
+    [ProtoInclude(54, typeof(ItemData))]
     //[ProtoInclude(55, typeof(BillingInfo))]
 
 
