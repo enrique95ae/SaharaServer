@@ -150,14 +150,14 @@ namespace SaharaServer
          * 
          */
 
-        public GetItemDataEvent GetItemData(string ItemTitle)
+        public GetItemDataEvent GetItemData(int ItemID)
         {
-            if (String.IsNullOrWhiteSpace(ItemTitle))
+            if (ItemID < 0) //make sure we are looking for a valid ID?
             {
                 return null;
             }
 
-            string sqlQuery = $"select * from ItemData";
+            string sqlQuery = $"select * from ItemData where id='{ItemID}'";
 
             using (var connection = new SQLiteConnection("Data Source=SaharaDB.db"))
             {
@@ -167,6 +167,16 @@ namespace SaharaServer
 
                     if (ItemData != null)
                     {
+                        ItemData.ItemTitle = $"select ItemTitle from ItemDara where id='{ItemID}'";
+                        ItemData.ItemDescription = $"select ItemDescription from ItemDara where id='{ItemID}'";
+                        ItemData.ItemPrice = Convert.ToDouble($"select ItemPrice from ItemDara where id='{ItemID}'");
+                        ItemData.ItemImageSRC1 = $"select ImageSRC1 from ItemDara where id='{ItemID}'";
+                        ItemData.ItemImageSRC2 = $"select ImageSRC2 from ItemDara where id='{ItemID}'";
+                        ItemData.ItemImageSRC3 = $"select ImageSRC3 from ItemDara where id='{ItemID}'";
+                        ItemData.ItemImageSRC4 = $"select ImageSRC4 from ItemDara where id='{ItemID}'";
+                        ItemData.ItemImageSRC5 = $"select ImageSRC5 from ItemDara where id='{ItemID}'";
+                        ItemData.ItemImageSRC6 = $"select ImageSRC6 from ItemDara where id='{ItemID}'";
+
                         return ItemData;
                     }
                 }

@@ -67,16 +67,6 @@ namespace SaharaServer
 
             _processSuccess = _dbManager.CreateAccount(newUserData.UserEmail, newUserData.UserPassword);
 
-            //Email and Password verification to be implemented
-          /*  if(newUserData.UserEmail != null && newUserData.UserPassword != null)
-            {
-                _processSuccess = true; 
-            }
-            else
-            {
-                _processSuccess = false;
-            } */
-
             ServerReply(new ResponseEvent(_processSuccess));
         }
 
@@ -86,41 +76,10 @@ namespace SaharaServer
 
             _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
 
-            //debug
-            // _processSuccess = _dbManager.VerifyLoginInfo(loginData._Email, loginData._Password);
-
             var email = loginData._Email;
             var password = loginData._Password;
 
             string sqlSelect = $"select UserPassword from UserData where UserEmail='{email}'";
-
-            /*
-            lock(_lock)
-            {
-                using (var connection = new SQLiteConnection(_dbSource))
-                {
-                    connection.Open();
-
-                    var selectedPassword = connection.Query<string>(sqlSelect).First();
-
-                    Console.WriteLine($"Trying to find {email}'s password: {password}");
-                    Console.WriteLine($"Found password: {selectedPassword}");
-
-                    if (selectedPassword == password)
-                    {
-                        Console.WriteLine("Passwords were equal");
-                        ServerReply(new ResponseEvent(true));
-                    }
-                    else
-                    {
-                        ServerReply(new ResponseEvent(false));
-                    }
-
-                }
-
-            } 
-
-            */
 
             ServerReply(new ResponseEvent(_processSuccess));
             //ServerReply(new ResponseEvent(true));
@@ -156,7 +115,7 @@ namespace SaharaServer
         {
             Console.WriteLine("Processing GetItemData Event...");
 
-            itemData = _dbManager.GetItemData(itemData.ItemTitle);
+            itemData = _dbManager.GetItemData(itemData.ItemId);
 
             ServerReply(itemData);
         }
