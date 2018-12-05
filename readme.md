@@ -5,6 +5,6 @@ This server has been written in C# and acts as a bridge between the Client and t
 In theory it supports multiple connections thanks to multithreading.  
 
 Packages used:  
-  ProtoBuf-net. 
+  ProtoBuf-net.   
   Dapper  
   System.SQLite.net. 
